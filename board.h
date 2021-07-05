@@ -1,26 +1,17 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "move.h"
-#include "player.h"
+#define N 3
 
-enum Result { Tie , Player1 , Player2 };
-enum Status { NotFinished , Finished};
+enum TileStatus{Empty, Player1 , Player2 };
 
 class Board
 {
 private:
-    int board[3][3];
-    Status gameStatus;
-    Result gameResult;
-    int countOfplayedMove;
+    int matrix[N][N];
 public:
-   void playMove(Move move, Player currentPlayer);
-   void checkStatus();
-   void isWinMove();
-   friend class UI;
+   void updateBoard(int row,int col);
+   TileStatus checktileStatus(int row,int col);
 };
-
-
 
 #endif

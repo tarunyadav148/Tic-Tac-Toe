@@ -3,16 +3,19 @@
 
 #include<string>
 
-enum GamePlayer { Player1 , Player2};
+#define N 3
 
 class Player{
 private:
-    std::string name;
-    GamePlayer gamePlayer;
+    std::string name; 
+    int rows[N];       
+    int cols[N];       
+    int diags[N-1];    
+    void updateWinparameter(int row,int col); 
 public:
-    void setInfo();
-    void getName();
-    void getGamePlayer();
+    void setName();  
+    void getName();  
+    bool playMove(int row,int col); 
 };
 
 #endif
