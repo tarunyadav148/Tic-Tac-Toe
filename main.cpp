@@ -3,6 +3,7 @@
 #include "ui.h"
 
 void play(TicTacToe &ttt,UI &ui);
+std::pair<int,int> getRowAndCol(int i);
 
 int main()
 {
@@ -30,9 +31,45 @@ int main()
     
 }
 
+std::pair<int,int> getRowAndCol(int move)
+{
+    switch (move)
+    {
+    case 1:
+        return std::pair<int,int>(0,0);
+        break;
+    case 2:
+        return std::pair<int,int>(0,1);
+        break;
+    case 3:
+        return std::pair<int,int>(0,2);
+        break;
+    case 4:
+        return std::pair<int,int>(1,0);
+        break;
+    case 5:
+        return std::pair<int,int>(1,1);
+        break;
+    case 6:
+        return std::pair<int,int>(1,2);
+        break;
+    case 7:
+        return std::pair<int,int>(2,0);
+        break;
+    case 8:
+        return std::pair<int,int>(2,1);
+        break;
+    case 9:
+        return std::pair<int,int>(2,2);
+        break; 
+       
+    }
+    throw "invalid move";
+}
+
 void play(TicTacToe &ttt,UI &ui)
 {
-    int row,col;
+    int row,col,move;
 
     std::string name;
     std::cout<<"Enter name of player 1:";
@@ -54,17 +91,16 @@ void play(TicTacToe &ttt,UI &ui)
             if(i%2==0)
             {
                 std::cout<<"\n"<<ttt.player1.getName()
-                    <<" enter row and col of move:";
-                std::cin>>row>>col;
-                ttt.playMove(row,col);
+                    <<" enter move [1-9]:";
             }
             else
             {
                 std::cout<<"\n"<<ttt.player2.getName()
-                    <<" enter row and col of move:";
-                std::cin>>row>>col;
-                ttt.playMove(row,col);
+                    <<" enter move [1-9]:";
             }
+            std::cin>>move;
+            auto [row,col] = getRowAndCol(move);
+            ttt.playMove(row,col);
         }
         
 
