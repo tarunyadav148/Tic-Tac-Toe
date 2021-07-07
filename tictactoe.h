@@ -4,20 +4,27 @@
 #include "board.h"
 #include "player.h"
 
+namespace GameResult{
 enum GameResult { Tie , Player1 , Player2 };
+}
+namespace GameStatus{
 enum GameStatus { NotFinished , Finished};
+}
 
-class tictactoe{
+
+class TicTacToe{
 private:
-    void Move(int row,int col);
     int countOfMovePlayed;
-    GameStatus gameStatus;
-    GameResult gameResult;
+    GameStatus::GameStatus gameStatus;
+    GameResult::GameResult gameResult;
 public:
+    TicTacToe();
     Board board;
     Player player1,player2;
-    GameStatus Status();
-    GameResult Result();
+    bool isValidMove(int row,int col);
+    bool playMove(int row,int col);
+    GameStatus::GameStatus Status();
+    GameResult::GameResult Result();
 };
 
 #endif

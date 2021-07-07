@@ -11,11 +11,11 @@ private:
     int rows[N];       
     int cols[N];       
     int diags[N-1];    
-    void updateWinparameter(int row,int col); 
 public:
-    void setName();  
-    void getName();  
-    bool playMove(int row,int col); 
+    Player();
+    void setName(std::string name);  
+    bool updateWinparameter(int row,int col); 
+    std::string getName();  
 };
 
 #endif

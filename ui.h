@@ -1,17 +1,14 @@
 #ifndef UI_H
 #define UI_H
 
-#include "board.h";
+#include "board.h"
 
-enum Choice { PlayGame };
+enum Menu{ Exit,PlayGame };
 
 class UI{
-private:
-    Choice currChoice;
 public:
     void displayMenu();
-    void getChoice();
-    void playNextMove(Player player);
+    Menu getChoice();
     void displayCurrentBoard(Board &board);
 };
 
