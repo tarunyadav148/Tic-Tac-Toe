@@ -1,3 +1,4 @@
+#include<iostream>
 #include "board.h"
 
 Board::Board()
@@ -13,7 +14,7 @@ Board::Board()
 
 void Board::updateBoard(int row,int col,Players::Players player)
 {
-    matrix[row][col] = player;
+    matrix[row][col] = (int)player;
 }
 
 TileStatus::TileStatus Board::checktileStatus(int row,int col)

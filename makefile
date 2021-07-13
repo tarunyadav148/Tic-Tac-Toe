@@ -1,20 +1,20 @@
 TicTactoe:	main.o ui.o tictactoe.o board.o player.o
-	g++ main.o ui.o tictactoe.o board.o player.o -o TicTactoe -std=c++17
+	g++ main.o ui.o tictactoe.o board.o player.o -o TicTactoe -std=c++14
 
 main.o: main.cpp
-	g++ -c main.cpp -std=c++17
+	g++ -c main.cpp -std=c++14
 
 ui.o: ui.cpp
-	g++ -c ui.cpp -std=c++17
+	g++ -c ui.cpp -std=c++14
 
 tictactoe.o: tictactoe.cpp
-	g++ -c tictactoe.cpp -std=c++17
+	g++ -c tictactoe.cpp -std=c++14
 
 board.o: board.cpp
-	g++ -c board.cpp -std=c++17
+	g++ -c board.cpp -std=c++14
 
 player.o: player.cpp
-	g++ -c player.cpp -std=c++17
+	g++ -c player.cpp -std=c++14
 
 clean:
 	rm *.o TicTactoe

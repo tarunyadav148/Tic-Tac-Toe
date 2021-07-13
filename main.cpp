@@ -69,7 +69,9 @@ std::pair<int,int> getRowAndCol(int move)
 
 void play(TicTacToe &ttt,UI &ui)
 {
-    int row,col,move;
+    int move;
+    int row,col;
+    std::pair<int,int> pairMove;
 
     std::string name;
     std::cout<<"Enter name of player 1:";
@@ -99,8 +101,18 @@ void play(TicTacToe &ttt,UI &ui)
                     <<" enter move [1-9]:";
             }
             std::cin>>move;
-            auto [row,col] = getRowAndCol(move);
-            ttt.playMove(row,col);
+            pairMove = getRowAndCol(move);
+            row = pairMove.first;
+            col = pairMove.second;
+            while(!ttt.playMove(row,col))
+            {
+                std::cout<<"Enter a valid move:";
+                std::cin>>move;
+                pairMove = getRowAndCol(move);
+                row = pairMove.first;
+                col = pairMove.second;
+                std::cout<<row<<" "<<col<<std::endl;
+            }
         }
         
 
