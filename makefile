@@ -1,5 +1,5 @@
 TicTacToe:	main.o ui.o tictactoe.o board.o player.o
-	g++ main.o ui.o tictactoe.o board.o player.o -o TicTactoe -std=c++14
+	g++ main.o ui.o tictactoe.o board.o player.o -o TicTacToe -std=c++14
 
 main.o: main.cpp
 	g++ -c main.cpp -std=c++14
