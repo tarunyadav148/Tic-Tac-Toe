@@ -19,6 +19,6 @@ Requirement:g++ complier that support c++14 and cmake
 Compiling in windows with MinGW
 
     $cd TIC-TAC-TOE
-    $g++ main.cpp ui.cpp tictactoe.cpp board.cpp player.cpp -o TicTactoe -std=c++14
+    $g++ main.cpp ui.cpp tictactoe.cpp board.cpp player.cpp -o TicTacToe -std=c++14
 
 --------------------------------------------------------------------------------
