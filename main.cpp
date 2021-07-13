@@ -3,8 +3,12 @@
 #include "tictactoe.h"
 #include "ui.h"
 
+//Play Game
 void play(TicTacToe &ttt,UI &ui);
+//Get a pair containing row and col of board of a move
 std::pair<int,int> getRowAndCol(int i);
+//Input name of playes
+void setPlayersNames(TicTacToe &ttt);
 
 int main()
 {
@@ -13,19 +17,21 @@ int main()
 
     ui.displayMenu();
 
+    GetValidMenuChocie:
     Menu choice = ui.getChoice();
 
     switch(choice)
     {
-    case Exit:
-        exit(EXIT_SUCCESS);
-        break;
-    case PlayGame:
-        play(ttt,ui);
-        break;
-    default:
-        std::cout<<"Not a valid choice";
-        break;
+        case Exit:
+            exit(EXIT_SUCCESS);
+            break;
+        case PlayGame:
+            play(ttt,ui);
+            break;
+        default:
+            std::cout<<"Not a valid choice enter again";
+            goto GetValidMenuChocie;
+            break;
     }
 
     getchar();
@@ -36,91 +42,97 @@ std::pair<int,int> getRowAndCol(int move)
 {
     switch (move)
     {
-    case 1:
-        return std::pair<int,int>(0,0);
-        break;
-    case 2:
-        return std::pair<int,int>(0,1);
-        break;
-    case 3:
-        return std::pair<int,int>(0,2);
-        break;
-    case 4:
-        return std::pair<int,int>(1,0);
-        break;
-    case 5:
-        return std::pair<int,int>(1,1);
-        break;
-    case 6:
-        return std::pair<int,int>(1,2);
-        break;
-    case 7:
-        return std::pair<int,int>(2,0);
-        break;
-    case 8:
-        return std::pair<int,int>(2,1);
-        break;
-    case 9:
-        return std::pair<int,int>(2,2);
-        break; 
-       
+        case 1:return std::pair<int,int>(0,0);
+        case 2:return std::pair<int,int>(0,1);
+        case 3:return std::pair<int,int>(0,2);
+        case 4:return std::pair<int,int>(1,0);
+        case 5:return std::pair<int,int>(1,1);
+        case 6:return std::pair<int,int>(1,2);
+        case 7:return std::pair<int,int>(2,0);
+        case 8:return std::pair<int,int>(2,1);
+        case 9:return std::pair<int,int>(2,2);
     }
     throw "invalid move";
 }
 
-void play(TicTacToe &ttt,UI &ui)
+void setPlayersNames(TicTacToe &ttt)
 {
-    int move;
-    int row,col;
-    std::pair<int,int> pairMove;
-
     std::string name;
+
     std::cout<<"Enter name of player 1:";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     getline(std::cin,name);
     ttt.player1.setName(name);
+
     std::cout<<"Enter name of player 2:";
     getline(std::cin,name);
     ttt.player2.setName(name);
+}
+
+void getMove(int& row,int& col)
+{
+    int move;
+    std::pair<int,int> MovePair;
+
+    std::cin>>move;
+    while(!std::cin.good())
+    {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        std::cout<<"Please enter a intger only[1-9]:";
+        std::cin>>move;
+    }
+
+    try
+    {
+        MovePair = getRowAndCol(move);
+        row = MovePair.first;
+        col = MovePair.second;
+    }catch(const char* e)
+    {
+        std::cout<<e<<std::endl;
+        std::cout<<"Enter again [1-9]:";
+        getMove(row,col);
+    }
+    
+}
+
+void play(TicTacToe &ttt,UI &ui)
+{ 
+    int row,col;
+
+    setPlayersNames(ttt);
 
     system("clear");
 
-    for(int i=0;i<9;i++)
+    int moveCounter = 0;
+    while(ttt.Status()==GameStatus::GameStatus::NotFinished)
     {
-        if(i==0)
-            ui.displayCurrentBoard(ttt.board);
+        if(moveCounter==0) ui.displayCurrentBoard(ttt.board);
 
-        if(ttt.Status()==GameStatus::GameStatus::NotFinished)
+        if(moveCounter%2==0)
         {
-            if(i%2==0)
-            {
-                std::cout<<"\n"<<ttt.player1.getName()
-                    <<" enter move [1-9]:";
-            }
-            else
-            {
-                std::cout<<"\n"<<ttt.player2.getName()
-                    <<" enter move [1-9]:";
-            }
-            std::cin>>move;
-            pairMove = getRowAndCol(move);
-            row = pairMove.first;
-            col = pairMove.second;
-            while(!ttt.playMove(row,col))
-            {
-                std::cout<<"Enter a valid move:";
-                std::cin>>move;
-                pairMove = getRowAndCol(move);
-                row = pairMove.first;
-                col = pairMove.second;
-            }
+            std::cout<<"\n"<<ttt.player1.getName()
+                <<" Enter a move [1-9]:";
         }
-        
+
+        if(moveCounter%2!=0)
+        {
+            std::cout<<"\n"<<ttt.player2.getName()
+                    <<" Enter a move [1-9]:";
+        }
+
+        getMove(row,col);
+
+        while(!ttt.playMove(row,col))
+        {
+            std::cout<<"Please enter a valid move:";
+            getMove(row,col);
+        }
 
         system("clear");
         ui.displayCurrentBoard(ttt.board);
-        if(ttt.Status()==GameStatus::GameStatus::Finished)
-            break;
+        moveCounter++;
     }
 
     if(ttt.Result()==GameResult::GameResult::Player1)
@@ -128,12 +140,14 @@ void play(TicTacToe &ttt,UI &ui)
         std::cout<<ttt.player1.getName()
                 <<" win the game"<<std::endl;
     }
-    else if(ttt.Result()==GameResult::GameResult::Player2)
+
+    if(ttt.Result()==GameResult::GameResult::Player2)
     {
         std::cout<<ttt.player2.getName()
                 <<" win the game"<<std::endl;
     }
-    else
+
+    if(ttt.Result()==GameResult::GameResult::Tie)
     {
         std::cout<<"Game Tie"<<std::endl;
     }

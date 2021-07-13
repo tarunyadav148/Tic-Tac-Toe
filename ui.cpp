@@ -1,4 +1,5 @@
 #include<iostream>
+#include<limits>
 #include "ui.h"
 #include "board.h"
 
@@ -14,6 +15,13 @@ Menu UI::getChoice()
     int choice;
     std::cout<<"Enter your choice:";
     std::cin>>choice;
+    while(!std::cin.good())
+    {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        std::cout<<"Please enter a intger only:";
+        std::cin>>choice;
+    }
     return (Menu)choice;
 }
 
