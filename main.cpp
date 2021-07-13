@@ -1,4 +1,5 @@
 #include<iostream>
+#include<limits>
 #include "tictactoe.h"
 #include "ui.h"
 
@@ -75,10 +76,11 @@ void play(TicTacToe &ttt,UI &ui)
 
     std::string name;
     std::cout<<"Enter name of player 1:";
-    std::cin>>name;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    getline(std::cin,name);
     ttt.player1.setName(name);
     std::cout<<"Enter name of player 2:";
-    std::cin>>name;
+    getline(std::cin,name);
     ttt.player2.setName(name);
 
     system("clear");
@@ -111,7 +113,6 @@ void play(TicTacToe &ttt,UI &ui)
                 pairMove = getRowAndCol(move);
                 row = pairMove.first;
                 col = pairMove.second;
-                std::cout<<row<<" "<<col<<std::endl;
             }
         }
         
