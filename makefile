@@ -1,4 +1,4 @@
-TicTactoe:	main.o ui.o tictactoe.o board.o player.o
+TicTacToe:	main.o ui.o tictactoe.o board.o player.o
 	g++ main.o ui.o tictactoe.o board.o player.o -o TicTactoe -std=c++14
 
 main.o: main.cpp
