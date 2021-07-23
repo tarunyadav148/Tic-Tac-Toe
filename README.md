@@ -8,7 +8,6 @@ Compiling in linux
 Requirement:g++ complier that support c++14 and cmake
 
     $sudo apt install g++
-    $sudo apt install cmake
 
     $cd TIC-TAC-TOE
     $make
