@@ -3,7 +3,7 @@ Tic Tac Toe game in cpp
 
 
 --------------------------------------------------------------------
-###Compiling in Unix based System
+Compiling in Unix based System
 
 Requirement:g++ complier that support c++14 and cmake
 
@@ -15,7 +15,7 @@ Requirement:g++ complier that support c++14 and cmake
 
 ------------------------------------------------------------------------
 
-###Compiling in windows with MinGW
+Compiling in windows with MinGW
 
     $cd TIC-TAC-TOE
     $g++ main.cpp ui.cpp tictactoe.cpp board.cpp player.cpp -o TicTacToe -std=c++14
