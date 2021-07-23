@@ -4,10 +4,16 @@
 #include "ui.h"
 
 //Play Game
+//@take a tic tac toe and ui oject as input
 void play(TicTacToe &ttt,UI &ui);
+
+//input move from player
+void getMove(int& row,int& col);
+
 //Get a pair containing row and col of board of a move
 std::pair<int,int> getRowAndCol(int i);
-//Input name of playes
+
+//Input name of players
 void setPlayersNames(TicTacToe &ttt);
 
 int main()
@@ -38,6 +44,9 @@ int main()
     
 }
 
+
+
+//Get a pair containing row and col of board of a move
 std::pair<int,int> getRowAndCol(int move)
 {
     switch (move)
@@ -55,6 +64,9 @@ std::pair<int,int> getRowAndCol(int move)
     throw "invalid move";
 }
 
+
+
+//Input name of players
 void setPlayersNames(TicTacToe &ttt)
 {
     std::string name;
@@ -69,13 +81,16 @@ void setPlayersNames(TicTacToe &ttt)
     ttt.player2.setName(name);
 }
 
+
+
+//input move from player
 void getMove(int& row,int& col)
 {
     int move;
     std::pair<int,int> MovePair;
 
     std::cin>>move;
-    while(!std::cin.good())
+    while(!std::cin.good()) //checking validity of move
     {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -97,6 +112,9 @@ void getMove(int& row,int& col)
     
 }
 
+
+
+//playing the game
 void play(TicTacToe &ttt,UI &ui)
 { 
     int row,col;

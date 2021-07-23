@@ -3,6 +3,9 @@
 #include "ui.h"
 #include "board.h"
 
+
+
+//Display menu
 void UI::displayMenu()
 {
     std::cout<<"\t\t\tTic-Tac-Toe"<<std::endl;
@@ -10,12 +13,15 @@ void UI::displayMenu()
     std::cout<<"Enter 1 for play"<<std::endl;
 }
 
+
+
+//Get menu choice
 Menu UI::getChoice()
 {
     int choice;
     std::cout<<"Enter your choice:";
     std::cin>>choice;
-    while(!std::cin.good())
+    while(!std::cin.good()) //checking validity of chocie
     {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -25,6 +31,10 @@ Menu UI::getChoice()
     return (Menu)choice;
 }
 
+
+
+//Diplay current board
+//@input : Board oject
 void UI::displayCurrentBoard(Board &board)
 {
     for(int i=0;i<N;i++)

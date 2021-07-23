@@ -1,5 +1,6 @@
 #include "tictactoe.h"
 
+//Set intial values
 TicTacToe::TicTacToe()
 {
     countOfMovePlayed = 0;
@@ -7,6 +8,11 @@ TicTacToe::TicTacToe()
     gameResult = GameResult::GameResult::Tie;
 }
 
+
+
+//Check validity of move
+//@input : row and column in board
+//@output : true if move is valid else false
 bool TicTacToe::isValidMove(int row,int col)
 {
     return (
@@ -17,6 +23,12 @@ bool TicTacToe::isValidMove(int row,int col)
     );
 }
 
+
+
+
+//Play a move
+//@input : row and column in board
+//@output : true if move played successfully else false
 bool TicTacToe::playMove(int row,int col)
 {
     if(isValidMove(row,col))
@@ -56,11 +68,19 @@ bool TicTacToe::playMove(int row,int col)
     return false;
 }
 
+
+
+
+//Returns status of game
 GameStatus::GameStatus TicTacToe::Status()
 {
     return gameStatus;
 }
 
+
+
+
+//Returns result of game
 GameResult::GameResult TicTacToe::Result()
 {
     return gameResult;

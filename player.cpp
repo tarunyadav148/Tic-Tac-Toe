@@ -1,5 +1,9 @@
 #include "player.h"
 
+
+//Set intial values
+//Player name = NULL
+//win parameters all set to 0
 Player::Player()
 {
     std::string name = "NULL";
@@ -16,6 +20,10 @@ Player::Player()
     }      
 }
 
+
+
+//Update win parameter of a player
+//@input : row and column of moved played by player
 bool Player::updateWinparameter(int row,int col)
 {
     rows[row]++;
@@ -43,11 +51,15 @@ bool Player::updateWinparameter(int row,int col)
     return false;
 }
 
+
+
+//Set name of Player
 void Player::setName(std::string name)
 {
     this->name = name;
 } 
 
+//Return name of player
 std::string Player::getName()
 {
     return name;
