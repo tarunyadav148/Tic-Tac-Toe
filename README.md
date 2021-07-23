@@ -3,7 +3,7 @@ Tic Tac Toe game in cpp
 
 
 --------------------------------------------------------------------
-Compiling in linux
+Compiling in Unix based System
 
 Requirement:g++ complier that support c++14 and cmake
 
