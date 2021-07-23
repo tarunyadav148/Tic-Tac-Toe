@@ -17,4 +17,8 @@ player.o: player.cpp
 	g++ -c player.cpp -std=c++14
 
 clean:
+<<<<<<< HEAD
 	rm *.o TicTacToe
+=======
+	rm *.o TicTacToe
+>>>>>>> 706d6708864b897e88d05b755aa4605904f5dbde
